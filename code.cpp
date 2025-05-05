@@ -6,6 +6,7 @@
 
 using namespace std;
 #define MAX 10e3
+#define DEBUG 1
 
 void printArray(int *array, int n);
 void gap_sum(int **Array, int n, int gap);
@@ -27,24 +28,22 @@ int main(int argc, char **argv){
         arrayValuesArray[i] = (rand()%(int)MAX);
     }
 
-    //cout << "Arreglo\n> ";
-    //printArray(arrayValuesArray, arrayValuesLength);
-
-    //auto start_time = chrono::high_resolution_clock::now();
+    if (DEBUG){
+        cout << "Arreglo\n> ";
+        printArray(arrayValuesArray, arrayValuesLength);
+    }
+    
     double t1 = omp_get_wtime();
     gap_sum(&arrayValuesArray, n, gap);
     double t2 = omp_get_wtime();
     double tiempo = t2 - t1;
-    printf("tiempo de suma = %f secs\n", tiempo);
+    printf("> tiempo de suma = %f secs\n", tiempo);
+    
+    if (DEBUG){
+        cout << "Resultado\n> ";
+        printArray(arrayValuesArray, arrayValuesLength);
+    }
 
-    //auto end_time = chrono::high_resolution_clock::now();
-    //auto elapsed_time = chrono::duration_cast<chrono::nanoseconds>(end_time - start_time);
-    
-      
-    
-    //cout << "Resultado\n> ";
-    //printArray(arrayValuesArray, arrayValuesLength);
-    //printf("Llevó un tiempo medio de: %.2f nanosegundos\n", (double)elapsed_time.count());
     return 0;
 }
 
