@@ -22,25 +22,26 @@ int main(int argc, char **argv){
 
     // generamos un arreglo con valores aleatorios respetando los gaps (usamos -1)
     long arrayValuesLength = (n+((n-1)*gap));
-    int *arrayValuesArray = new int[arrayValuesLength];
+    int *arrayValues = new int[arrayValuesLength];
+    for (int i = 0; i < arrayValuesLength; arrayValues[i] = 0, i++);
     for (int i = 0; i < arrayValuesLength; i += gap + 1){
-        arrayValuesArray[i] = (rand()%(int)MAX);
+        arrayValues[i] = (rand()%(int)MAX);
     }
 
     if (DEBUG){
         cout << "Arreglo\n> ";
-        printArray(arrayValuesArray, arrayValuesLength);
+        printArray(arrayValues, arrayValuesLength);
     }
     
     double t1 = omp_get_wtime();
-    gap_sum(&arrayValuesArray, n, gap);
+    gap_sum(&arrayValues, n, gap);
     double t2 = omp_get_wtime();
     double tiempo = t2 - t1;
     printf("> tiempo de suma = %f secs\n", tiempo);
     
     if (DEBUG){
         cout << "Resultado\n> ";
-        printArray(arrayValuesArray, arrayValuesLength);
+        printArray(arrayValues, arrayValuesLength);
     }
 
     return 0;
