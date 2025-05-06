@@ -51,7 +51,7 @@ int main(int argc, char **argv){
 void printArray(int *array, int n){
     cout << "[ ";
     for(int i = 0; i < n; i++){
-        cout << array[i] << " ";
+        array[i] == 0 ? cout << "x ": cout << array[i] << " ";
     }
     cout << "]" << endl;
 }
